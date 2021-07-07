@@ -1,0 +1,26 @@
+Navigate to the root directory where the Dockerfile is located and run docker build . to build the docker image.
+==> docker build -t <image-name> .
+
+==> docker images
+
+==> docker run -p 8080:8080 -t <image-name>
+
+Download AWS CLI and Configure it.
+
+==> aws configure
+
+==> aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin <your_account_id>.dkr.ecr.ap-south-1.amazonaws.com
+
+==> aws ecr create-repository --repository-name <Repository-name>
+
+==> docker tag apt-api:latest <your_account_id>.dkr.ecr.ap-south-1.amazonaws.com/<Repository-name>
+
+==> docker push <your_account_id>.dkr.ecr.us-east-2.amazonaws.com/<Repository-name>
+
+
+Deployment 
+Go to ECS
+
+Get Started->custom->fill details(image name = <your_account_id>.dkr.ecr.ap-south-1.amazonaws.com/<Repository-name>)->next->next
+
+View Service-> Taks-> click on task name -> find public IP
